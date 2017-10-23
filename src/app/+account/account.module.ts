@@ -12,6 +12,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 
 
+export const COMPONENTS = [
+  AccountComponent,
+  SignUpComponent,
+  LoginComponent
+];
 
 @NgModule({
   imports: [
@@ -21,10 +26,13 @@ import { LoginComponent } from './login/login.component';
     AccountRoutingModule,
     NgZorroAntdModule.forRoot(),
   ],
-  declarations: [
-    AccountComponent,
-    SignUpComponent,
-    LoginComponent
-  ]
+  declarations: COMPONENTS,
+  exports: COMPONENTS
 })
-export class AccountModule { }
+export class AccountModule {
+  static forRoot() {
+    return {
+      ngModule: AccountModule,
+    };
+  }
+}
