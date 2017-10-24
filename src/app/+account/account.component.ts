@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as Counter from './action';
+import * as fromAccount from './reducer';
 
 @Component({
   selector: 'app-account',
@@ -11,10 +12,10 @@ import * as Counter from './action';
 })
 export class AccountComponent implements OnInit {
 
-  counter: Observable<number>;
+  count$: Observable<number>;
 
   constructor(private store: Store<any>) {
-    this.counter = store.select('counter');
+    this.count$ = store.select(fromAccount.selectFeatureCount);
   }
 
   ngOnInit() {

@@ -1,33 +1,27 @@
+import {
+  createSelector,
+  createFeatureSelector,
+} from '@ngrx/store';
+
 import * as CounterActions from '../action';
 
-export interface State {
-  count: number;
-}
-
-const initialState: State = {
-  count: 0,
-};
+const initialState = 0;
 
 export type Action = CounterActions.Actions;
 
-export function reducer(state: State = initialState, action: Action): State {
+export function reducer(state: number = initialState, action: Action): number {
   switch (action.type) {
     case CounterActions.INCREMENT: {
-      return {
-        count: state.count + 1
-      };
+      return state + 1;
     }
 
     case CounterActions.DECREMENT: {
-      return {
-        count: state.count - 1
-      };
+      return state - 1;
+
     }
 
     case CounterActions.RESET: {
-      return {
-        count: action.payload // typed to number
-      };
+      return action.payload; // typed to number
     }
 
     default: {
@@ -35,3 +29,8 @@ export function reducer(state: State = initialState, action: Action): State {
     }
   }
 }
+
+// export reducer
+export const selectFeature = createFeatureSelector<number>('count');
+
+export const selectFeatureCount = createSelector(selectFeature, (state: number) => state);
