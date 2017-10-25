@@ -25,9 +25,12 @@
         <span>Remember me</span>
       </label>
       <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
-      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">Log in</button>
-      Or
-      <a routerLink="/account/signUp" routerLinkActive="active">register now!</a>
+    </div>
+    <div>
+      <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+      <button nz-button class="login-form-button">
+        <a routerLink="/account/signUp" routerLinkActive="active">register now!</a>
+      </button>
     </div>
   </div>
 </form>
