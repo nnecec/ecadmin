@@ -11,18 +11,18 @@ import { AccountService } from '../service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [AccountService]
 })
 export class LoginComponent implements OnInit {
   validateForm: FormGroup
-  private AccountService: AccountService
 
-  constructor (private fb: FormBuilder) {
+  constructor (private fb: FormBuilder, private AccountService: AccountService) {
   }
 
   ngOnInit () {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true]
     })
