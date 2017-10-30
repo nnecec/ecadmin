@@ -20,8 +20,8 @@ export interface State {
 // logger
 export function logger (reducer: ActionReducer<State>): ActionReducer<State> {
   return function (state: State, action: any): State {
-    console.log('state', state)
-    console.log('action', action)
+    console.log('%c state ', 'color: #fff;background: #f00; ', state)
+    console.log('%c action ', 'color: #fff;background: #00f; ', action)
 
     return reducer(state, action)
   }
@@ -34,5 +34,5 @@ export const reducers: ActionReducerMap<State> = {
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-? [logger]
-: []
+  ? [logger]
+  : []

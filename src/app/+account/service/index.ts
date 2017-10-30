@@ -14,13 +14,12 @@ export class AccountService {
   constructor (private http: Http) { }
 
   login ({ username, password }: Authenticate) {
-    console.log(username, password)
+    console.log(username, password, this.http)
 
     return this.http.get('/api')
-      .map(res => {
-        console.log(res)
-
-        return res.json()
+      .subscribe(data => {
+        // data is now an instance of type ItemsResponse, so you can do this:
+        console.log(data)
       })
 
     // if (username !== 'test') {
