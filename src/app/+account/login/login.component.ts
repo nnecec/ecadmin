@@ -5,6 +5,8 @@ import {
   Validators
 } from '@angular/forms'
 
+import { Apollo } from 'apollo-angular'
+
 // dependencies
 import { AccountService } from '../service'
 

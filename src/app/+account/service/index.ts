@@ -4,24 +4,33 @@ import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 import { of } from 'rxjs/observable/of'
 import { _throw } from 'rxjs/observable/throw'
-import 'rxjs/add/operator/map'
+
+import { Apollo } from 'apollo-angular'
+import gql from 'graphql-tag'
 
 import { User, Authenticate } from '../model'
 
 @Injectable()
 export class AccountService {
 
-  constructor (private http: Http) { }
+  constructor (private http: Http, private apollo: Apollo) { }
 
   login ({ username, password }: Authenticate) {
     console.log(username, password, this.http)
 
-    return this.http.get('/api')
-      .subscribe(data => {
-        // data is now an instance of type ItemsResponse, so you can do this:
-        console.log(data)
-      })
-
+    this.apollo.watchQuery({
+      query: gql`
+      query CurrentUserForProfile {
+        currentUser {
+          login
+          avatar_url
+        }
+      }
+    `
+    })
+    // .subscribe(({ data }) => {
+    //   console.log(data)
+    // })
     // if (username !== 'test') {
     //   return _throw('Invalid username or password')
     // }
