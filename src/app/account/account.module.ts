@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
-
+import { MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule } from '@angular/material'
 
 import { AccountRoutingModule } from './account-routing.module'
 import { AccountComponent } from './account.component'
@@ -23,15 +23,15 @@ export const COMPONENTS = [
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })
 export class AccountModule {
-  static forRoot () {
-    return {
-      ngModule: AccountModule
-    }
-  }
+
 }

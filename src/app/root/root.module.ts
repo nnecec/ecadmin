@@ -8,6 +8,7 @@ import { RootRoutingModule } from './root-routing.module'
 import { RootComponent } from './root.component'
 import { SharedModule } from '../shared/shared.module'
 import { HomeComponent } from '../home/home.component'
+import { AboutComponent } from '../about/about.component'
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { HomeComponent } from '../home/home.component'
   ],
   declarations: [
     RootComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ]
 })
 export class RootModule { }

@@ -18,7 +18,7 @@ import { AppService } from './app.service'
 
 // app Component
 import { AppComponent } from './app.component'
-import { RootModule } from './+root/root.module'
+import { RootModule } from './root/root.module'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -30,15 +30,11 @@ import { reducers, metaReducers } from './reducers'
 
 // apollo
 import { ApolloClient } from 'apollo-client'
-import { ApolloModule } from 'apollo-angular';
-import { HomeComponent } from './app/home/home.component';
-import { AboutComponent } from './about/about.component'
+import { ApolloModule } from 'apollo-angular'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

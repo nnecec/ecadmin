@@ -9,7 +9,7 @@ import * as routerStore from '@ngrx/router-store'
 
 import { environment } from '../../environments/environment'
 
-import * as account from '../+account/reducer'
+import * as account from '../account/reducer'
 import { RouterStateUrl } from '../utils'
 
 export interface State {
