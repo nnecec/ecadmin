@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 
 // external packages
-import { NgZorroAntdModule } from 'ng-zorro-antd'
 
 // ngrx
 import { StoreModule } from '@ngrx/store'
@@ -31,18 +30,21 @@ import { reducers, metaReducers } from './reducers'
 
 // apollo
 import { ApolloClient } from 'apollo-client'
-import { ApolloModule } from 'apollo-angular'
+import { ApolloModule } from 'apollo-angular';
+import { HomeComponent } from './app/home/home.component';
+import { AboutComponent } from './about/about.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    NgZorroAntdModule.forRoot(),
 
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,

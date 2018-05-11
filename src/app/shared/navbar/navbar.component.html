@@ -1,0 +1,33 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        blog
+      </mat-panel-title>
+      <mat-panel-description>
+        nnecec-blog
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/about">About</a>
+      </li>
+    </ul>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        luoo
+      </mat-panel-title>
+      <mat-panel-description>
+        nnecec-luoo
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>

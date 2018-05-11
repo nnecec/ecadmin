@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 
-import { NgZorroAntdModule } from 'ng-zorro-antd'
 
 import { AccountRoutingModule } from './account-routing.module'
 import { AccountComponent } from './account.component'
@@ -24,8 +23,7 @@ export const COMPONENTS = [
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AccountRoutingModule,
-    NgZorroAntdModule.forRoot()
+    AccountRoutingModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

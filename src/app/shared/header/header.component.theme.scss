@@ -5,6 +5,7 @@
   $accent: map-get($theme, accent);
 
   .header {
-    background: mat-color($primary);
+    // background-color: mat-color($primary);
+    color: mat-color($accent);
   }
 }

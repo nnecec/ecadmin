@@ -3,6 +3,7 @@
 @include mat-core;
 
 @import "./dark-theme.scss";
+@import "./light-theme.scss";
 
 @import "../shared/header/header.component.theme.scss";
 
@@ -13,4 +14,8 @@
 .dark-theme {
   @include angular-material-theme($dark-theme);
   @include custom-components-theme($dark-theme);
+}
+.light-theme {
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
 }

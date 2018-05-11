@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 
 // Material
-import { MatButtonModule } from '@angular/material'
+import { MatButtonModule, MatExpansionModule, MatListModule, MatMenuModule } from '@angular/material'
 
 import { NavbarComponent } from './navbar/navbar.component'
 import { HeaderComponent } from './header/header.component'
@@ -14,7 +14,11 @@ import { FooterComponent } from './footer/footer.component'
     CommonModule,
     RouterModule,
 
-    MatButtonModule
+    // Material
+    MatButtonModule,
+    MatExpansionModule,
+    MatListModule,
+    MatMenuModule
   ],
   exports: [
     HeaderComponent,
@@ -28,10 +32,5 @@ import { FooterComponent } from './footer/footer.component'
   ]
 })
 export class SharedModule {
-  // static forRoot (): ModuleWithProviders {
-  //   return {
-  //     ngModule: SharedModule,
-  //     providers: []
-  //   }
-  // }
+
 }
