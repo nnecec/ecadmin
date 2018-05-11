@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-import { Observable } from 'rxjs/Observable'
-import { of } from 'rxjs/observable/of'
-import { _throw } from 'rxjs/observable/throw'
+import { Observable } from 'rxjs'
 
 import { Apollo } from 'apollo-angular'
 import gql from 'graphql-tag'
@@ -39,6 +37,6 @@ export class AccountService {
   }
 
   logout () {
-    return of(true)
+
   }
 }

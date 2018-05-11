@@ -1,38 +1,38 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule, ModuleWithProviders } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NgZorroAntdModule } from 'ng-zorro-antd'
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { NavbarComponent } from './navbar/navbar.component'
+import { HeaderComponent } from './header/header.component'
+import { FooterComponent } from './footer/footer.component'
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgZorroAntdModule.forRoot(),
+    NgZorroAntdModule.forRoot()
   ],
   exports: [
     HeaderComponent,
     NavbarComponent,
     FooterComponent,
-    BreadcrumbComponent,
+    BreadcrumbComponent
   ],
   declarations: [
     NavbarComponent,
     HeaderComponent,
     FooterComponent,
-    BreadcrumbComponent,
+    BreadcrumbComponent
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot (): ModuleWithProviders {
     return {
       ngModule: SharedModule,
       providers: []
-    };
+    }
   }
 }
