@@ -2,37 +2,36 @@ import { NgModule, ModuleWithProviders } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 
-import { NgZorroAntdModule } from 'ng-zorro-antd'
+// Material
+import { MatButtonModule } from '@angular/material'
 
 import { NavbarComponent } from './navbar/navbar.component'
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgZorroAntdModule.forRoot()
+
+    MatButtonModule
   ],
   exports: [
     HeaderComponent,
     NavbarComponent,
-    FooterComponent,
-    BreadcrumbComponent
+    FooterComponent
   ],
   declarations: [
     NavbarComponent,
     HeaderComponent,
-    FooterComponent,
-    BreadcrumbComponent
+    FooterComponent
   ]
 })
 export class SharedModule {
-  static forRoot (): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: []
-    }
-  }
+  // static forRoot (): ModuleWithProviders {
+  //   return {
+  //     ngModule: SharedModule,
+  //     providers: []
+  //   }
+  // }
 }

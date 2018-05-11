@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+@mixin header-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .header {
+    background: mat-color($primary);
+  }
+}

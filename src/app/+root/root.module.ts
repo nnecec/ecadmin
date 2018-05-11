@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { NgZorroAntdModule } from 'ng-zorro-antd'
 
 import { RootRoutingModule } from './root-routing.module'
 import { RootComponent } from './root.component'
@@ -10,8 +9,7 @@ import { SharedModule } from '../shared/shared.module'
   imports: [
     CommonModule,
     RootRoutingModule,
-    SharedModule.forRoot(),
-    NgZorroAntdModule.forRoot()
+    SharedModule
   ],
   declarations: [RootComponent]
 })
