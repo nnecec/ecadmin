@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
-import { MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule } from '@angular/material'
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule } from '@angular/material'
 
 import { AccountRoutingModule } from './account-routing.module'
 import { AccountComponent } from './account.component'
@@ -25,9 +25,11 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     AccountRoutingModule,
 
+    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

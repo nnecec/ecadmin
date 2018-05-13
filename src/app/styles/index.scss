@@ -6,9 +6,11 @@
 @import "./light-theme.scss";
 
 @import "../shared/header/header.component.theme.scss";
+@import "../account/account.component.theme.scss";
 
 @mixin custom-components-theme($theme) {
   @include header-component-theme($theme);
+  @include account-component-theme($theme);
 }
 
 .dark-theme {

@@ -1,0 +1,11 @@
+@import "~@angular/material/theming";
+
+@mixin account-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .account-container {
+    // background-color: mat-color($primary);
+    background-color: mat-color($accent);
+  }
+}
