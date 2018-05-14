@@ -5,7 +5,9 @@
   $accent: map-get($theme, accent);
 
   .account-container {
-    // background-color: mat-color($primary);
-    background-color: mat-color($accent);
+    > div:first-child {
+      background-color: mat-color($accent);
+      color: mat-color($primary);
+    }
   }
 }

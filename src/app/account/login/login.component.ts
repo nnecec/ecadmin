@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {
-  FormBuilder,
-  FormGroup,
+  FormControl,
   Validators
 } from '@angular/forms'
 
@@ -17,30 +16,35 @@ import { AccountService } from '../service'
   providers: [AccountService]
 })
 export class LoginComponent implements OnInit {
-  validateForm: FormGroup
+  username = new FormControl('nnecec', [
+    Validators.required,
+    Validators.minLength(6),
+    Validators.maxLength(20)
+  ])
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+    Validators.maxLength(20)
+  ])
 
-  constructor (private fb: FormBuilder, private AccountService: AccountService) {
+  constructor (private AccountService: AccountService) {
   }
 
   ngOnInit () {
-    this.validateForm = this.fb.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    })
+
+  }
+  errorMessage (name, labelName) {
+    if (this[name].hasError('required')) {
+      return `请输入${labelName}`
+    }
+
+    if (this[name].hasError('minlength') || this[name].hasError('maxlength')) {
+      return `请输入6-20位长度${labelName}`
+    }
   }
 
-  _submitForm () {
-    for (let i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty()
-    }
-
-    if (this.validateForm.valid) {
-      const query = this.validateForm.value
-      console.log(query)
-      this.AccountService.login(query)
-    }
-
+  submit () {
+    console.log(this)
   }
 
 }

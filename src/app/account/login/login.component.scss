@@ -1,4 +1,16 @@
-.account-login-container{
-  display: inline-grid;
-  
+:host {
+  width: 100%;
+}
+
+.account-login-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+
+  .password-control {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
