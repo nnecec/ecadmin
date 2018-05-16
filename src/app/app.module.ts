@@ -29,9 +29,8 @@ const APP_PROVIDERS = [
 import { reducers, metaReducers } from './reducers'
 
 // apollo
-import { ApolloClient } from 'apollo-client'
 import { ApolloModule } from 'apollo-angular'
-
+import { HttpLinkModule } from 'apollo-angular-link-http'
 @NgModule({
   declarations: [
     AppComponent
@@ -42,12 +41,15 @@ import { ApolloModule } from 'apollo-angular'
     HttpModule,
     BrowserAnimationsModule,
 
+    // apollo
+    ApolloModule,
+    HttpLinkModule,
+
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument(),
     // EffectsModule.forRoot([]),
 
-    ApolloModule,
 
     RootModule,
     AppRouting

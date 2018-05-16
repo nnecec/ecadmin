@@ -1,36 +1,33 @@
-import {
-  createSelector,
-  createFeatureSelector,
-} from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store'
 
-import * as CounterActions from '../action';
+import { LoginActionTypes, LoginActions } from '../action'
 
-const initialState = 0;
+export interface LoginState {
+  user: object
+}
 
-export type Action = CounterActions.Actions;
+const initialState = {
+  user: {}
+}
 
-export function reducer(state: number = initialState, action: Action): number {
+export type Action = LoginActions
+
+export function loginReducer(state: LoginState = initialState, action: LoginActions) {
   switch (action.type) {
-    case CounterActions.INCREMENT: {
-      return state + 1;
+    case LoginActionTypes.login: {
+      return true
     }
 
-    case CounterActions.DECREMENT: {
-      return state - 1;
+    case LoginActionTypes.logout: {
+      return false
 
-    }
-
-    case CounterActions.RESET: {
-      return action.payload; // typed to number
     }
 
     default: {
-      return state;
+      return state
     }
   }
 }
 
 // export reducer
-export const selectFeature = createFeatureSelector<number>('count');
-
-export const selectFeatureCount = createSelector(selectFeature, (state: number) => state);
+export const getLoginState = (state: LoginState) => state.user

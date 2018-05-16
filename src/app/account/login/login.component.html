@@ -1,21 +1,21 @@
-<div class="account-login-container">
-  <form>
-    <mat-form-field>
-      <input matInput placeholder="用户名" name="username" autocomplete="username" required [formControl]="username">
-      <mat-error *ngIf="username.invalid">{{errorMessage('username','用户名')}}</mat-error>
-    </mat-form-field>
+<form class="account-login-container" [formGroup]="loginForm" (ngSubmit)="submit()">
+  <mat-form-field>
+    <input matInput placeholder="用户名" name="username" autocomplete="username" required formControlName="username">
+    <mat-error *ngIf="loginForm.controls.username.invalid">{{errorMessage('username','用户名')}}</mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <input matInput type="password" placeholder="密码" name="password" autocomplete="current-password" required  [formControl]="password">
-      <mat-error *ngIf="password.invalid">{{errorMessage('password','密码')}}</mat-error>
-    </mat-form-field>
-  </form>
+  <mat-form-field>
+    <input matInput type="password" placeholder="密码" name="password" autocomplete="current-password" required formControlName="password">
+    <mat-error *ngIf="loginForm.controls.password.invalid">{{errorMessage('password','密码')}}</mat-error>
+
+  </mat-form-field>
+
 
   <div class="password-control">
     <mat-checkbox>记住密码</mat-checkbox>
     <a routerLink="/forget">忘记密码?</a>
   </div>
 
-  <button mat-raised-button color="primary" (click)="submit()">登陆</button>
-  <button mat-button color="primary" routerLink="/register">注册</button>
-</div>
+  <button mat-raised-button color="primary" type="submit">登陆</button>
+  <button mat-button color="primary" type="button" routerLink="/account/signup">注册</button>
+</form>

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import {
   FormControl,
+  FormBuilder,
+  FormGroup,
   Validators
 } from '@angular/forms'
 
 import { Apollo } from 'apollo-angular'
 
-// dependencies
+// service
 import { AccountService } from '../service'
 
 @Component({
@@ -16,29 +18,31 @@ import { AccountService } from '../service'
   providers: [AccountService]
 })
 export class LoginComponent implements OnInit {
-  username = new FormControl('nnecec', [
-    Validators.required,
-    Validators.minLength(6),
-    Validators.maxLength(20)
-  ])
-  password = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6),
-    Validators.maxLength(20)
-  ])
-
-  constructor (private AccountService: AccountService) {
+  loginForm: FormGroup
+  constructor (@Inject(FormBuilder) fb: FormBuilder, private AccountService: AccountService) {
+    this.loginForm = fb.group({
+      username: ['nnecec', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]]
+    })
   }
 
   ngOnInit () {
 
   }
   errorMessage (name, labelName) {
-    if (this[name].hasError('required')) {
+    if (this.loginForm.controls[name].hasError('required')) {
       return `请输入${labelName}`
     }
 
-    if (this[name].hasError('minlength') || this[name].hasError('maxlength')) {
+    if (this.loginForm.controls[name].hasError('minlength') || this.loginForm.controls[name].hasError('maxlength')) {
       return `请输入6-20位长度${labelName}`
     }
   }

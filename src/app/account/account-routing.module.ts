@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
 
-import { AccountComponent } from './account.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { LoginComponent } from './login/login.component';
+import { AccountComponent } from './account.component'
+import { SignupComponent } from './sign-up/sign-up.component'
+import { LoginComponent } from './login/login.component'
 
 const routes: Routes = [
   {
@@ -16,11 +16,11 @@ const routes: Routes = [
       path: 'login',
       component: LoginComponent
     }, {
-      path: 'signUp',
-      component: SignUpComponent
+      path: 'signup',
+      component: SignupComponent
     }]
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

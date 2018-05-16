@@ -1,64 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core'
+import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignupComponent implements OnInit {
+  signupForm: FormGroup
 
-  validateForm: FormGroup;
+  constructor (@Inject(FormBuilder) fb: FormBuilder) {
+    this.signupForm = fb.group({
+      username: ['nnecec', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]]
+    })
+  }
 
-  _submitForm() {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
+  ngOnInit () {
+
+  }
+
+  errorMessage (name, labelName) {
+    if (this.signupForm.controls[name].hasError('required')) {
+      return `请输入${labelName}`
+    }
+
+    if (this.signupForm.controls[name].hasError('minlength') || this.signupForm.controls[name].hasError('maxlength')) {
+      return `请输入6-20位长度${labelName}`
     }
   }
 
-  constructor(private fb: FormBuilder) {
-  }
-
-  updateConfirmValidator() {
-    /** wait for refresh value */
-    setTimeout(_ => {
-      this.validateForm.controls['checkPassword'].updateValueAndValidity();
-    });
-  }
-
-  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls['password'].value) {
-      return { confirm: true, error: true };
+  submit (form: NgForm) {
+    console.log(form.value)
+    if (form.valid) {
     }
   }
-
-  getCaptcha(e: MouseEvent) {
-    e.preventDefault();
-  }
-
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      email: [null, [Validators.email]],
-      password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-      phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      captcha: [null, [Validators.required]],
-      agree: [false]
-    });
-  }
-
-  getFormControl(name) {
-    return this.validateForm.controls[name];
-  }
-
 }

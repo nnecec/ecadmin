@@ -1,65 +1,42 @@
-import { Action } from '@ngrx/store';
-import { User, Authenticate } from '../model';
-
-export const INCREMENT  = '[Counter] Increment';
-export const DECREMENT  = '[Counter] Decrement';
-export const RESET      = '[Counter] Reset';
-
-export class Increment implements Action {
-  readonly type = INCREMENT;
-}
-
-export class Decrement implements Action {
-  readonly type = DECREMENT;
-}
-
-export class Reset implements Action {
-  readonly type = RESET;
-
-  constructor(public payload: number) {}
-}
-
+import { Action } from '@ngrx/store'
+import { User, Authenticate } from '../model'
 
 // Login info
-export const LOGIN = '[Auth] Login';
-export const LOGOUT = '[Auth] Logout';
-export const LOGIN_SUCCESS = '[Auth] Login Success';
-export const LOGIN_FAILURE = '[Auth] Login Failure';
-export const LOGIN_REDIRECT = '[Auth] Login Redirect';
+export enum LoginActionTypes {
+  login = '[Auth] Login',
+  logout = '[Auth] Logout',
+  loginSuccess = '[Auth] Login Success',
+  loginFailure = '[Auth] Login Failure',
+  loginRedirect = '[Auth] Login Redirect'
+}
 
 export class Login implements Action {
-  readonly type = LOGIN;
-
-  constructor(public payload: Authenticate) {}
-}
-
-export class LoginSuccess implements Action {
-  readonly type = LOGIN_SUCCESS;
-
-  constructor(public payload: { user: User }) {}
-}
-
-export class LoginFailure implements Action {
-  readonly type = LOGIN_FAILURE;
-
-  constructor(public payload: any) {}
-}
-
-export class LoginRedirect implements Action {
-  readonly type = LOGIN_REDIRECT;
+  readonly type = LoginActionTypes.login
 }
 
 export class Logout implements Action {
-  readonly type = LOGOUT;
+  readonly type = LoginActionTypes.logout
 }
 
+export type LoginActions
+  = Login
+  | Logout
 
-export type Actions
-  = Increment
-  | Decrement
-  | Reset
-  | Login
-  | LoginSuccess
-  | LoginFailure
-  | LoginRedirect
-  | Logout;
+// Signup info
+export enum SignupActionTypes {
+  signup = '[Auth] Signup',
+  signupSuccess = '[Auth] Signup Success',
+  signupFailure = '[Auth] Signup Failure'
+}
+
+export class Signup implements Action {
+  readonly type = SignupActionTypes.signup
+}
+
+export class SignupSuccess implements Action {
+  readonly type = SignupActionTypes.signupSuccess
+}
+
+export type SignupActions
+  = Signup
+  | SignupSuccess

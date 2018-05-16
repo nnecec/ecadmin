@@ -1,0 +1,14 @@
+<form class="account-signup-container" [formGroup]="signupForm" (ngSubmit)="submit(signup)" #signup="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="用户名" name="username" autocomplete="username" required formControlName="username">
+    <mat-error *ngIf="signupForm.controls.username.invalid">{{errorMessage('username','用户名')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="密码" name="password" autocomplete="current-password" required formControlName="password">
+    <mat-error *ngIf="signupForm.controls.password.invalid">{{errorMessage('password','密码')}}</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">注册</button>
+  <button mat-button color="primary" type="button" routerLink="/account/login">取消</button>
+</form>
