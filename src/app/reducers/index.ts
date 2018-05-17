@@ -13,7 +13,7 @@ import * as account from '../account/reducer'
 import { RouterStateUrl } from '../utils'
 
 export interface State {
-  count: number
+  loginReducer: any
   routerReducer: routerStore.RouterReducerState<RouterStateUrl>
 }
 
@@ -29,7 +29,7 @@ export function logger (reducer: ActionReducer<State>): ActionReducer<State> {
 
 // combine multi reducers
 export const reducers: ActionReducerMap<State> = {
-  count: account.reducer,
+  loginReducer: account.loginReducer,
   routerReducer: routerStore.routerReducer
 }
 

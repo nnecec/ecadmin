@@ -12,7 +12,7 @@ const initialState = {
 
 export type Action = LoginActions
 
-export function loginReducer(state: LoginState = initialState, action: LoginActions) {
+export function loginReducer (state: LoginState = initialState, action: LoginActions) {
   switch (action.type) {
     case LoginActionTypes.login: {
       return true
@@ -29,5 +29,4 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
   }
 }
 
-// export reducer
 export const getLoginState = (state: LoginState) => state.user

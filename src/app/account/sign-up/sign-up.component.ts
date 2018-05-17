@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms'
+import { Apollo } from 'apollo-angular'
+
+import { signupMutation } from '../graphql/mutation'
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +12,10 @@ import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angula
 export class SignupComponent implements OnInit {
   signupForm: FormGroup
 
-  constructor (@Inject(FormBuilder) fb: FormBuilder) {
+  constructor (
+    @Inject(FormBuilder) fb: FormBuilder,
+    private apollo: Apollo
+  ) {
     this.signupForm = fb.group({
       username: ['nnecec', [
         Validators.required,
@@ -41,6 +47,17 @@ export class SignupComponent implements OnInit {
   submit (form: NgForm) {
     console.log(form.value)
     if (form.valid) {
+      this.apollo.mutate({
+        mutation: signupMutation,
+        variables: {
+          username: form.value.username,
+          password: form.value.password
+        }
+      }).subscribe(({ data }) => {
+        console.log('got data', data)
+      }, (error) => {
+        console.log('there was an error sending the query', error)
+      })
     }
   }
 }

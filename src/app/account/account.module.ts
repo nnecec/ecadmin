@@ -6,9 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule } from '@angular/material'
 
-import { ApolloModule } from 'apollo-angular'
-import { HttpLinkModule } from 'apollo-angular-link-http'
-
 import { AccountRoutingModule } from './account-routing.module'
 import { AccountComponent } from './account.component'
 import { SignupComponent } from './sign-up/sign-up.component'
@@ -33,9 +30,6 @@ export const COMPONENTS = [
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-
-    ApolloModule,
-    HttpLinkModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

@@ -15,22 +15,9 @@ export class AccountComponent implements OnInit {
   count$: Observable<number>
 
   constructor (private store: Store<any>) {
-    this.count$ = store.select(fromAccount.selectFeatureCount)
   }
 
   ngOnInit () {
     console.log('account module')
-  }
-
-  increment () {
-    this.store.dispatch(new Counter.Increment())
-  }
-
-  decrement () {
-    this.store.dispatch(new Counter.Decrement())
-  }
-
-  reset () {
-    this.store.dispatch(new Counter.Reset(3))
   }
 }

@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
+import { HttpClientModule } from '@angular/common/http'
 
 // external packages
 
@@ -29,8 +30,9 @@ const APP_PROVIDERS = [
 import { reducers, metaReducers } from './reducers'
 
 // apollo
-import { ApolloModule } from 'apollo-angular'
-import { HttpLinkModule } from 'apollo-angular-link-http'
+import { ApolloModule, Apollo } from 'apollo-angular'
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 @NgModule({
   declarations: [
     AppComponent
@@ -40,16 +42,17 @@ import { HttpLinkModule } from 'apollo-angular-link-http'
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     // apollo
     ApolloModule,
     HttpLinkModule,
 
+    // routes
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument(),
     // EffectsModule.forRoot([]),
-
 
     RootModule,
     AppRouting
@@ -57,4 +60,11 @@ import { HttpLinkModule } from 'apollo-angular-link-http'
   providers: [APP_PROVIDERS],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor (apollo: Apollo, httpLink: HttpLink) {
+    apollo.create({
+      link: httpLink.create({ uri: 'http://localhost:4001/graphql' }),
+      cache: new InMemoryCache()
+    })
+  }
+}
