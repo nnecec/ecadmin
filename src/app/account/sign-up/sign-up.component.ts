@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms'
 import { Apollo } from 'apollo-angular'
+import { MatSnackBar } from '@angular/material'
 
 import { signupMutation } from '../graphql/mutation'
 
@@ -10,11 +11,12 @@ import { signupMutation } from '../graphql/mutation'
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignupComponent implements OnInit {
-  signupForm: FormGroup
+  private signupForm: FormGroup
 
   constructor (
     @Inject(FormBuilder) fb: FormBuilder,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private snackBar: MatSnackBar
   ) {
     this.signupForm = fb.group({
       username: ['nnecec', [
@@ -56,7 +58,8 @@ export class SignupComponent implements OnInit {
       }).subscribe(({ data }) => {
         console.log('got data', data)
       }, (error) => {
-        console.log('there was an error sending the query', error)
+        console.log(error)
+        this.snackBar.open(error.message)
       })
     }
   }

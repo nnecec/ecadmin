@@ -5,8 +5,8 @@
 @import "./dark-theme.scss";
 @import "./light-theme.scss";
 
-@import "../shared/header/header.component.theme.scss";
-@import "../account/account.component.theme.scss";
+@import "../../shared/header/header.component.theme.scss";
+@import "../../account/account.component.theme.scss";
 
 @mixin custom-components-theme($theme) {
   @include header-component-theme($theme);
@@ -20,5 +20,7 @@
 
 .light-theme {
   @include angular-material-theme($light-theme);
+  @include angular-material-typography($light-typography);
+  
   @include custom-components-theme($light-theme);
 }

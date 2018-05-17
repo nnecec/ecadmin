@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule } from '@angular/material'
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material'
 
 import { AccountRoutingModule } from './account-routing.module'
 import { AccountComponent } from './account.component'
@@ -30,9 +30,17 @@ export const COMPONENTS = [
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSnackBarModule
   ],
   declarations: COMPONENTS,
-  exports: COMPONENTS
+  exports: COMPONENTS,
+  providers: [{
+    provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+      duration: 2500,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    }
+  }]
 })
 export class AccountModule {
 
