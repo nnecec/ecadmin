@@ -1,26 +1,59 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
 
-import { LoginActionTypes, LoginActions } from '../action'
+import { AccountActionTypes, AccountActions } from '../action'
 
-export interface LoginState {
-  user: object
+export interface AccountState {
+  user: object,
+  error: any,
+  loading: boolean
 }
 
 const initialState = {
-  user: {}
+  user: {},
+  error: null,
+  loading: false
 }
 
-export type Action = LoginActions
+export type Action = AccountActions
 
-export function loginReducer (state: LoginState = initialState, action: LoginActions) {
+export function accountReducer (state: AccountState = initialState, action: AccountActions) {
   switch (action.type) {
-    case LoginActionTypes.login: {
-      return true
+    case AccountActionTypes.login: {
+      return {
+        ...state,
+        error: null,
+        loading: true
+      }
     }
 
-    case LoginActionTypes.logout: {
-      return false
+    case AccountActionTypes.logout: {
+      return {
+        ...state,
+        error: null,
+        loading: true
+      }
+    }
 
+    case AccountActionTypes.signup: {
+      return {
+        ...state,
+        error: null,
+        loading: true
+      }
+    }
+    case AccountActionTypes.signupSuccess: {
+      return {
+        ...state,
+        error: null,
+        loading: false
+      }
+    }
+    case AccountActionTypes.signupFailure: {
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      }
     }
 
     default: {
@@ -29,4 +62,4 @@ export function loginReducer (state: LoginState = initialState, action: LoginAct
   }
 }
 
-export const getLoginState = (state: LoginState) => state.user
+export const getLoginState = (state: AccountState) => state.user

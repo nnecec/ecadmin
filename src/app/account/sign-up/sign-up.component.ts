@@ -1,9 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core'
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms'
 import { Apollo } from 'apollo-angular'
 import { MatSnackBar } from '@angular/material'
+import { Store } from '@ngrx/store'
 
 import { signupMutation } from '../graphql/mutation'
+import { Signup } from '../action'
 
 @Component({
   selector: 'app-sign-up',
@@ -11,12 +13,15 @@ import { signupMutation } from '../graphql/mutation'
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignupComponent implements OnInit {
+  @Output() submitted = new EventEmitter<any>()
+
   private signupForm: FormGroup
 
   constructor (
     @Inject(FormBuilder) fb: FormBuilder,
     private apollo: Apollo,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store<any>
   ) {
     this.signupForm = fb.group({
       username: ['nnecec', [
@@ -47,20 +52,8 @@ export class SignupComponent implements OnInit {
   }
 
   submit (form: NgForm) {
-    console.log(form.value)
     if (form.valid) {
-      this.apollo.mutate({
-        mutation: signupMutation,
-        variables: {
-          username: form.value.username,
-          password: form.value.password
-        }
-      }).subscribe(({ data }) => {
-        console.log('got data', data)
-      }, (error) => {
-        console.log(error)
-        this.snackBar.open(error.message)
-      })
+      this.store.dispatch(new Signup(form.value))
     }
   }
 }

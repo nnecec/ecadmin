@@ -21,9 +21,12 @@ import { AppService } from './app.service'
 import { AppComponent } from './app.component'
 import { RootModule } from './root/root.module'
 
+import { CustomSerializer } from './utils/router-store'
+
 // Application wide providers
 const APP_PROVIDERS = [
-  AppService
+  AppService,
+  { provide: RouterStateSerializer, useClass: CustomSerializer }
 ]
 
 // ngrx
@@ -51,7 +54,10 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
     // routes
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
-    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 // Retains last 25 states
+      // logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     // EffectsModule.forRoot([]),
 
     RootModule,

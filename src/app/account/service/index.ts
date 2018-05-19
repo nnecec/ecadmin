@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { Apollo } from 'apollo-angular'
 import gql from 'graphql-tag'
 
@@ -10,13 +10,13 @@ import { signupMutation } from '../graphql/mutation'
 export class AccountService {
   constructor (private http: Http, private apollo: Apollo) { }
 
-  signup ({ username, password }) {
+  signup ({ username, password }): Observable<any> {
     return this.apollo.mutate({
       mutation: signupMutation,
       variables: {
         username,
         password
       }
-    }).subscribe(({ data }) => data, (error) => error)
+    })
   }
 }

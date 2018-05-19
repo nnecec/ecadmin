@@ -5,16 +5,21 @@ import {
   ActionReducer,
   MetaReducer
 } from '@ngrx/store'
-import * as routerStore from '@ngrx/router-store'
+import {
+  routerReducer,
+  RouterReducerState
+} from '@ngrx/router-store'
 
+// config
 import { environment } from '../../environments/environment'
+import { RouterStateUrl } from '../utils/router-store'
 
-import * as account from '../account/reducer'
-import { RouterStateUrl } from '../utils'
+// import reducer
+import { AppReducers, AppReducer } from './reducers'
 
 export interface State {
-  loginReducer: any
-  routerReducer: routerStore.RouterReducerState<RouterStateUrl>
+  accountReducer: any
+  routerReducer: RouterReducerState<RouterStateUrl>
 }
 
 // logger
@@ -29,8 +34,8 @@ export function logger (reducer: ActionReducer<State>): ActionReducer<State> {
 
 // combine multi reducers
 export const reducers: ActionReducerMap<State> = {
-  loginReducer: account.loginReducer,
-  routerReducer: routerStore.routerReducer
+  routerReducer: routerReducer,
+  ...AppReducers
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
