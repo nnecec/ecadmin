@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 // ngrx
 import { StoreModule } from '@ngrx/store'
-// import { EffectsModule } from '@ngrx/effects'
+import { EffectsModule } from '@ngrx/effects'
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
@@ -27,6 +27,8 @@ const APP_PROVIDERS = [
 
 // ngrx
 import { reducers, metaReducers } from './reducers'
+
+import { AccountEffects } from './effects/account.effect'
 
 // apollo
 import { ApolloModule, Apollo } from 'apollo-angular'
@@ -77,7 +79,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, M
       maxAge: 25 // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    // EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AccountEffects]),
 
     AppRouting,
 

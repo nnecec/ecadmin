@@ -15,10 +15,10 @@ import { environment } from '../../environments/environment'
 import { RouterStateUrl } from '../utils/router-store'
 
 // import reducer
-import { AppReducers, AppReducer } from './reducers'
+import accountReducer from './account.reducer'
 
 export interface State {
-  accountReducer: any
+  accountReducer: any,
   routerReducer: RouterReducerState<RouterStateUrl>
 }
 
@@ -35,7 +35,7 @@ export function logger (reducer: ActionReducer<State>): ActionReducer<State> {
 // combine multi reducers
 export const reducers: ActionReducerMap<State> = {
   routerReducer: routerReducer,
-  ...AppReducers
+  accountReducer
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

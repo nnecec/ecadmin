@@ -16,7 +16,7 @@ const initialState = {
 
 export type Action = AccountActions
 
-export function accountReducer (state: AccountState = initialState, action: AccountActions) {
+export default function accountReducer (state: AccountState = initialState, action: AccountActions) {
   switch (action.type) {
     case AccountActionTypes.login: {
       return {
