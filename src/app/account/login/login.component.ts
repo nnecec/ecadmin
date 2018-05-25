@@ -9,7 +9,7 @@ import {
 import { Apollo } from 'apollo-angular'
 
 // service
-import { AccountService } from '../service'
+import { AccountService } from '../../services/account.service'
 
 @Component({
   selector: 'app-login',

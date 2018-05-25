@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs'
 import { Apollo } from 'apollo-angular'
 import gql from 'graphql-tag'
 
-import { signupMutation } from '../graphql/mutation'
+import { signupMutation } from '../graphql/account.graphql'
 
 @Injectable()
 export class AccountService {

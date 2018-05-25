@@ -4,8 +4,8 @@ import { Apollo } from 'apollo-angular'
 import { MatSnackBar } from '@angular/material'
 import { Store } from '@ngrx/store'
 
-import { signupMutation } from '../graphql/mutation'
-import { Signup } from '../action'
+import { signupMutation } from '../../graphql/account.graphql'
+import { Signup } from '../../actions/account.action'
 
 @Component({
   selector: 'app-sign-up',

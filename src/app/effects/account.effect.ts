@@ -6,8 +6,8 @@ import { Observable, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { Apollo } from 'apollo-angular'
 
-import { AccountService } from '../service'
-import { Signup, AccountActionTypes, SignupSuccess, SignupFailure } from '../action'
+import { AccountService } from '../services/account.service'
+import { Signup, AccountActionTypes, SignupSuccess, SignupFailure } from '../actions/account.action'
 
 @Injectable()
 export class AccountEffects {

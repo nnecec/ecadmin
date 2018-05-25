@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
 
-import { AccountActionTypes, AccountActions } from '../action'
+import { AccountActionTypes, AccountActions } from '../actions/account.action'
 
 export interface AccountState {
   user: object,

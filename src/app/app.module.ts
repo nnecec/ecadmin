@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { HttpClientModule } from '@angular/common/http'
 
@@ -16,10 +16,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 // app configuration
 import { AppRouting } from './app.routing'
 import { AppService } from './app.service'
-
-// app Component
-import { AppComponent } from './app.component'
-import { RootModule } from './root/root.module'
 
 import { CustomSerializer } from './utils/router-store'
 
@@ -36,9 +32,32 @@ import { reducers, metaReducers } from './reducers'
 import { ApolloModule, Apollo } from 'apollo-angular'
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+
+// Component
+import { AppComponent } from './app.component'
+import { AccountComponent } from './account/account.component'
+import { LoginComponent } from './account/login/login.component'
+import { SignupComponent } from './account/sign-up/sign-up.component'
+import { HeaderComponent } from './components/shared/header/header.component'
+import { FooterComponent } from './components/shared/footer/footer.component'
+import { NavbarComponent } from './components/shared/navbar/navbar.component'
+import { RootComponent } from './components/shared/root/root.component'
+import { HomeComponent } from './home/home.component'
+
+// Material
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatExpansionModule, MatListModule, MatMenuModule } from '@angular/material'
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AccountComponent,
+    LoginComponent,
+    SignupComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
+    RootComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +65,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
     HttpModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
+    ReactiveFormsModule,
     // apollo
     ApolloModule,
     HttpLinkModule,
@@ -60,8 +79,19 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
     }),
     // EffectsModule.forRoot([]),
 
-    RootModule,
-    AppRouting
+    AppRouting,
+
+    // Material
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatListModule,
+    MatMenuModule
+
   ],
   providers: [APP_PROVIDERS],
   bootstrap: [AppComponent]

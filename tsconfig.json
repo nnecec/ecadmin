@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "baseUrl": ".",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -15,6 +16,26 @@
       "es2017",
       "dom",
       "esnext.asynciterable"
-    ]
+    ],
+    // "paths": {
+    //   "actions/*": [
+    //     "src/app/actions/*"
+    //   ],
+    //   "effects/*": [
+    //     "src/app/effects/*"
+    //   ],
+    //   "reducers/*": [
+    //     "src/app/reducers/*"
+    //   ],
+    //   "services/*": [
+    //     "src/app/services/*"
+    //   ],
+    //   "graphql/*": [
+    //     "src/app/graphql/*"
+    //   ],
+    //   "components/*": [
+    //     "src/app/components/*"
+    //   ],
+    // }
   }
 }
