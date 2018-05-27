@@ -15,3 +15,11 @@ export const signupMutation = gql`
         }
     }
 `
+
+export const loginMutation = gql`
+    mutation login($username:String,$password:String) {
+      login(username: $username,password:$password) {
+            username
+        }
+    }
+`

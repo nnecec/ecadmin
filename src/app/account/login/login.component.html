@@ -1,4 +1,4 @@
-<form class="account-login-container" [formGroup]="loginForm" (ngSubmit)="submit()">
+<form class="account-login-container" [formGroup]="loginForm" (ngSubmit)="submit(login)" #login="ngForm">
   <mat-form-field>
     <input matInput placeholder="用户名" name="username" autocomplete="username" required formControlName="username">
     <mat-error *ngIf="loginForm.controls.username.invalid">{{errorMessage('username','用户名')}}</mat-error>

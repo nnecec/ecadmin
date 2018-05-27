@@ -3,13 +3,16 @@ import {
   FormControl,
   FormBuilder,
   FormGroup,
-  Validators
+  Validators,
+  NgForm
 } from '@angular/forms'
 
 import { Apollo } from 'apollo-angular'
+import { Store } from '@ngrx/store'
 
 // service
 import { AccountService } from '../../services/account.service'
+import { Login } from '../../actions/account.action'
 
 @Component({
   selector: 'app-login',
@@ -18,8 +21,13 @@ import { AccountService } from '../../services/account.service'
   providers: [AccountService]
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup
-  constructor (@Inject(FormBuilder) fb: FormBuilder, private AccountService: AccountService) {
+  private loginForm: FormGroup
+
+  constructor (
+    @Inject(FormBuilder) fb: FormBuilder,
+    private apollo: Apollo,
+    private store: Store<any>
+  ) {
     this.loginForm = fb.group({
       username: ['nnecec', [
         Validators.required,
@@ -47,8 +55,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  submit () {
+  submit (form: NgForm) {
     console.log(this)
+    if (form.valid) {
+      this.store.dispatch(new Login(form.value))
+    }
+
   }
 
 }

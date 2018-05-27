@@ -1,10 +1,8 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms'
 import { Apollo } from 'apollo-angular'
-import { MatSnackBar } from '@angular/material'
 import { Store } from '@ngrx/store'
 
-import { signupMutation } from '../../graphql/account.graphql'
 import { Signup } from '../../actions/account.action'
 
 @Component({
@@ -13,14 +11,11 @@ import { Signup } from '../../actions/account.action'
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignupComponent implements OnInit {
-  @Output() submitted = new EventEmitter<any>()
-
   private signupForm: FormGroup
 
   constructor (
     @Inject(FormBuilder) fb: FormBuilder,
     private apollo: Apollo,
-    private snackBar: MatSnackBar,
     private store: Store<any>
   ) {
     this.signupForm = fb.group({

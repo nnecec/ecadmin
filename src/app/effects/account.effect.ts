@@ -7,19 +7,31 @@ import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { Apollo } from 'apollo-angular'
 
 import { AccountService } from '../services/account.service'
-import { Signup, AccountActionTypes, SignupSuccess, SignupFailure } from '../actions/account.action'
+import { Signup, Login, AccountActionTypes, SignupSuccess, SignupFailure, LoginSuccess, LoginFailure } from '../actions/account.action'
 
 @Injectable()
 export class AccountEffects {
   @Effect()
   signup$: Observable<Action> = this.actions$.pipe(
     ofType<Signup>(AccountActionTypes.signup),
-    exhaustMap((action: any) =>
-      this.accountService.signup(action)
-        .pipe(
-          map(data => new SignupSuccess(data)),
-          catchError(err => of(new SignupFailure(err)))
-        )
+    map(action => action.payload),
+    exhaustMap((signup: any) => this.accountService.signup(signup)
+      .pipe(
+        map(data => new SignupSuccess(data)),
+        catchError(err => of(new SignupFailure(err)))
+      )
+    )
+  )
+
+  @Effect()
+  login$: Observable<Action> = this.actions$.pipe(
+    ofType<Login>(AccountActionTypes.login),
+    map(action => action.payload),
+    exhaustMap((login: any) => this.accountService.login(login)
+      .pipe(
+        map(data => new LoginSuccess(data)),
+        catchError(err => of(new LoginFailure(err)))
+      )
     )
   )
 

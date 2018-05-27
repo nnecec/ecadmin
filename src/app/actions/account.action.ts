@@ -8,13 +8,14 @@ export enum AccountActionTypes {
   loginFailure = '[Auth] Login Failure',
   loginRedirect = '[Auth] Login Redirect',
 
-  signup = '[Auth] Signup',
-  signupSuccess = '[Auth] Signup Success',
-  signupFailure = '[Auth] Signup Failure'
+  signup = '[Auth] Sign up',
+  signupSuccess = '[Auth] Sign up Success',
+  signupFailure = '[Auth] Sign up Failure'
 }
 
 export class Login implements Action {
   readonly type = AccountActionTypes.login
+  constructor (public payload: any) { }
 }
 
 export class Logout implements Action {
@@ -22,9 +23,11 @@ export class Logout implements Action {
 }
 export class LoginSuccess implements Action {
   readonly type = AccountActionTypes.loginSuccess
+  constructor (public payload: any) { }
 }
 export class LoginFailure implements Action {
   readonly type = AccountActionTypes.loginFailure
+  constructor (public payload: any) { }
 }
 export class LoginRedirect implements Action {
   readonly type = AccountActionTypes.loginRedirect
