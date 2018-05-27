@@ -7,6 +7,20 @@ import { HttpClientModule } from '@angular/common/http'
 
 // external packages
 
+// Material
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatExpansionModule,
+  MatListModule,
+  MatMenuModule
+} from '@angular/material'
+
 // ngrx
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
@@ -19,16 +33,11 @@ import { AppService } from './app.service'
 
 import { CustomSerializer } from './utils/router-store'
 
-// Application wide providers
-const APP_PROVIDERS = [
-  AppService,
-  { provide: RouterStateSerializer, useClass: CustomSerializer }
-]
-
 // ngrx
 import { reducers, metaReducers } from './reducers'
 
 import { AccountEffects } from './effects/account.effect'
+import { AccountService } from './services/account.service'
 
 // apollo
 import { ApolloModule, Apollo } from 'apollo-angular'
@@ -45,9 +54,6 @@ import { FooterComponent } from './components/shared/footer/footer.component'
 import { NavbarComponent } from './components/shared/navbar/navbar.component'
 import { RootComponent } from './components/shared/root/root.component'
 import { HomeComponent } from './home/home.component'
-
-// Material
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatExpansionModule, MatListModule, MatMenuModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -74,12 +80,12 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, M
 
     // routes
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([AccountEffects]),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forFeature([AccountEffects]),
 
     AppRouting,
 
@@ -95,13 +101,17 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, M
     MatMenuModule
 
   ],
-  providers: [APP_PROVIDERS],
+  providers: [
+    AppService,
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    AccountService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor (apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
-      link: httpLink.create({ uri: 'http://localhost:4001/graphql' }),
+      link: httpLink.create({ uri: 'http://localhost:4001/graphql' }) as any,
       cache: new InMemoryCache()
     })
   }
