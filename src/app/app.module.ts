@@ -43,6 +43,7 @@ import { AccountService } from './services/account.service'
 import { ApolloModule, Apollo } from 'apollo-angular'
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { setContext } from 'apollo-link-context'
 
 // Component
 import { AppComponent } from './app.component'
@@ -109,9 +110,29 @@ import { HomeComponent } from './home/home.component'
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  httpLink: HttpLink
+  apollo: Apollo
+
   constructor (apollo: Apollo, httpLink: HttpLink) {
-    apollo.create({
-      link: httpLink.create({ uri: 'http://localhost:4001/graphql' }) as any,
+    this.createApollo()
+  }
+
+  createApollo () {
+    const http = this.httpLink.create({ uri: '/graphql' })
+    const auth = setContext((_, { headers }) => {
+      const token = localStorage.getItem('token')
+
+      if (!token) {
+        return {}
+      } else {
+        return {
+          headers: headers.append('Authorization', `JWT ${token}`)
+        }
+      }
+    })
+
+    this.apollo.create({
+      link: auth.concat(http),
       cache: new InMemoryCache()
     })
   }

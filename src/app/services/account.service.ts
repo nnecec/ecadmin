@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable, of } from 'rxjs'
 import { Apollo } from 'apollo-angular'
-import gql from 'graphql-tag'
 
 import { signupMutation, loginMutation } from '../graphql/account.graphql'
 
