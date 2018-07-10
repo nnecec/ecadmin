@@ -36,7 +36,7 @@ import { CustomSerializer } from './utils/router-store'
 // ngrx
 import { reducers, metaReducers } from './reducers'
 
-import { AccountEffects } from './effects/account.effect'
+import Effects from './effects'
 import { AccountService } from './services/account.service'
 
 // apollo
@@ -81,7 +81,7 @@ import { HomeComponent } from './home/home.component'
 
     // routes
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AccountEffects]),
+    EffectsModule.forRoot(Effects),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // Retains last 25 states

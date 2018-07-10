@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+
 import { Action } from '@ngrx/store'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Observable, of } from 'rxjs'
@@ -8,6 +9,7 @@ import { Apollo } from 'apollo-angular'
 
 import { AccountService } from '../services/account.service'
 import { Signup, Login, AccountActionTypes, SignupSuccess, SignupFailure, LoginSuccess, LoginFailure } from '../actions/account.action'
+import * as RouterActions from '../actions/router.action'
 
 @Injectable()
 export class AccountEffects {
@@ -32,6 +34,7 @@ export class AccountEffects {
         map(data => {
           const token = JSON.parse(data._body).token
           localStorage.setItem('token', token)
+          store.dispatch(new RouterActions.Back())
           return new LoginSuccess(token)
         }),
         catchError(err => of(new LoginFailure(err)))
@@ -40,6 +43,7 @@ export class AccountEffects {
   )
 
   constructor (
+    private router: Router,
     private actions$: Actions,
     private accountService: AccountService
   ) { }
