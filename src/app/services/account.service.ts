@@ -7,25 +7,18 @@ import { signupMutation, loginMutation } from '../graphql/account.graphql'
 
 @Injectable()
 export class AccountService {
-  constructor (private http: Http, private apollo: Apollo) { }
+  private http: Http
+
+  constructor (http: Http, private apollo: Apollo) {
+    this.http = http
+  }
 
   signup ({ username, password }): Observable<any> {
-    return this.apollo.mutate({
-      mutation: signupMutation,
-      variables: {
-        username,
-        password
-      }
-    })
+    return this.http.post('/api/auth/signup', { username, password })
+
   }
 
   login ({ username, password }): Observable<any> {
-    return this.apollo.mutate({
-      mutation: loginMutation,
-      variables: {
-        username,
-        password
-      }
-    })
+    return this.http.post('/api/auth/login', { username, password })
   }
 }

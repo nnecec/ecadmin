@@ -29,14 +29,17 @@ export class AccountEffects {
     map(action => action.payload),
     exhaustMap((login: any) => this.accountService.login(login)
       .pipe(
-        map(data => new LoginSuccess(data)),
+        map(data => {
+          const token = JSON.parse(data._body).token
+          localStorage.setItem('token', token)
+          return new LoginSuccess(token)
+        }),
         catchError(err => of(new LoginFailure(err)))
       )
     )
   )
 
   constructor (
-    private http: HttpClient,
     private actions$: Actions,
     private accountService: AccountService
   ) { }

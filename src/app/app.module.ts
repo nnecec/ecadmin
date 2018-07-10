@@ -114,6 +114,8 @@ export class AppModule {
   apollo: Apollo
 
   constructor (apollo: Apollo, httpLink: HttpLink) {
+    this.apollo = apollo
+    this.httpLink = httpLink
     this.createApollo()
   }
 

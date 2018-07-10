@@ -6,5 +6,13 @@
 			"^/graphql": "/graphql"
 		},
 		"logLevel": "debug"
+	},
+	"/api": {
+		"target": "http://localhost:4001",
+		"secure": false,
+		"pathRewrite": {
+			"^/api": ""
+		},
+		"logLevel": "debug"
 	}
 }
