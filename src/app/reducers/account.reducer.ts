@@ -25,6 +25,13 @@ export default function accountReducer (state: AccountState = initialState, acti
         loading: true
       }
     }
+    case AccountActionTypes.loginSuccess: {
+      return {
+        ...state,
+        error: null,
+        loading: false
+      }
+    }
 
     case AccountActionTypes.logout: {
       return {

@@ -6,20 +6,9 @@ import { HttpModule } from '@angular/http'
 import { HttpClientModule } from '@angular/common/http'
 
 // external packages
+import { CUSTOM_COMPONENTS, MATERIAL_COMPONENTS } from './components.all'
 
 // Material
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatSelectModule,
-  MatCheckboxModule,
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-  MatExpansionModule,
-  MatListModule,
-  MatMenuModule
-} from '@angular/material'
 
 // ngrx
 import { StoreModule } from '@ngrx/store'
@@ -47,26 +36,11 @@ import { setContext } from 'apollo-link-context'
 
 // Component
 import { AppComponent } from './app.component'
-import { AccountComponent } from './account/account.component'
-import { LoginComponent } from './account/login/login.component'
-import { SignupComponent } from './account/sign-up/sign-up.component'
-import { HeaderComponent } from './components/shared/header/header.component'
-import { FooterComponent } from './components/shared/footer/footer.component'
-import { NavbarComponent } from './components/shared/navbar/navbar.component'
-import { RootComponent } from './components/shared/root/root.component'
-import { HomeComponent } from './home/home.component'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AccountComponent,
-    LoginComponent,
-    SignupComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavbarComponent,
-    RootComponent,
-    HomeComponent
+    ...CUSTOM_COMPONENTS,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -90,16 +64,7 @@ import { HomeComponent } from './home/home.component'
 
     AppRouting,
 
-    // Material
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatListModule,
-    MatMenuModule
+    ...MATERIAL_COMPONENTS
 
   ],
   providers: [

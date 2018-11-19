@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular'
 import { Store } from '@ngrx/store'
 
 import { Signup } from '../../actions/account.action'
+import { shiftInitState } from '@angular/core/src/view'
 
 @Component({
   selector: 'app-sign-up',
@@ -30,6 +31,8 @@ export class SignupComponent implements OnInit {
         Validators.maxLength(20)
       ]]
     })
+
+    this.user$
   }
 
   ngOnInit () {
