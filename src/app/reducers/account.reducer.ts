@@ -26,6 +26,7 @@ export default function accountReducer (state: AccountState = initialState, acti
       }
     }
     case AccountActionTypes.loginSuccess: {
+
       return {
         ...state,
         error: null,

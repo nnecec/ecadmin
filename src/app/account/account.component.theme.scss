@@ -1,13 +1,5 @@
 @import "~@angular/material/theming";
 
 @mixin account-component-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-
-  .account-container {
-    > div:first-child {
-      background-color: mat-color($accent);
-      color: mat-color($primary);
-    }
-  }
+  
 }

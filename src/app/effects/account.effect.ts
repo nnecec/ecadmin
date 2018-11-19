@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 
+import { MatSnackBar } from '@angular/material'
+
 import { Action } from '@ngrx/store'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Observable, of } from 'rxjs'
@@ -13,6 +15,7 @@ import * as RouterActions from '../actions/router.action'
 
 @Injectable()
 export class AccountEffects {
+
   @Effect()
   signup$: Observable<Action> = this.actions$.pipe(
     ofType<Signup>(AccountActionTypes.signup),
@@ -35,6 +38,7 @@ export class AccountEffects {
           const token = JSON.parse(data._body).token
           localStorage.setItem('token', token)
           // store.dispatch(new RouterActions.Back())
+          this.snackBar.open('login success.', 'ok', { duration: 2000 })
           return new LoginSuccess(token)
         }),
         catchError(err => of(new LoginFailure(err)))
@@ -45,6 +49,7 @@ export class AccountEffects {
   constructor (
     // private router: Router,
     private actions$: Actions,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public snackBar: MatSnackBar
   ) { }
 }
