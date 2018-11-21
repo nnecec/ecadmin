@@ -1,26 +1,15 @@
 @import "~@angular/material/theming";
 
-@include mat-core;
+// Include non-theme styles for core.
+@include mat-core();
 
-@import "./dark-theme.scss";
-@import "./light-theme.scss";
+// Define a theme.
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
 
-@import "../../components/shared/header/header.component.theme.scss";
-@import "../../account/account.component.theme.scss";
+$theme: mat-light-theme($primary, $accent);
 
-@mixin custom-components-theme($theme) {
-  @include header-component-theme($theme);
-  @include account-component-theme($theme);
-}
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
 
-.dark-theme {
-  @include angular-material-theme($dark-theme);
-  @include custom-components-theme($dark-theme);
-}
-
-.light-theme {
-  @include angular-material-theme($light-theme);
-  @include angular-material-typography($light-typography);
-  
-  @include custom-components-theme($light-theme);
-}
+@import './component-theme.scss';
