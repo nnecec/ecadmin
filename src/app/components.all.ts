@@ -29,7 +29,8 @@ import {
   MatSnackBarModule,
   MatExpansionModule,
   MatListModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSidenavModule
 } from '@angular/material'
 
 export const MATERIAL_COMPONENTS = [
@@ -41,5 +42,6 @@ export const MATERIAL_COMPONENTS = [
   MatSnackBarModule,
   MatExpansionModule,
   MatListModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSidenavModule
 ]

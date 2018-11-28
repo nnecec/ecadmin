@@ -9,16 +9,16 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <ul class="nav-list">
-      <li class="nav-item">
+    <mat-nav-list role="list">
+      <mat-list-item>
         <a routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item">
+      </mat-list-item>
+      <mat-list-item>
         <a routerLink="/about">About</a>
-      </li>
-    </ul>
-
+      </mat-list-item>
+    </mat-nav-list>
   </mat-expansion-panel>
+
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -28,6 +28,11 @@
         nnecec-luoo
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+
+    <mat-nav-list role="list">
+      <mat-list-item>
+        <a>Config</a>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-expansion-panel>
 </mat-accordion>
